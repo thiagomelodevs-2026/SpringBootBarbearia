@@ -60,6 +60,20 @@ Exemplo de corpo para `POST` e `PUT`:
 
 `bloqueadoAte` aceita uma data e hora no formato ISO 8601, por exemplo `"2026-10-20T21:30:00"`, ou `null`. A API não retorna o campo `senhaHash` nas respostas. Envie nesse campo somente um hash de senha, nunca uma senha em texto puro.
 
+## API de vagas
+
+A rota `GET /vagas` retorna resultados paginados. Por padrão, lista cinco vagas por página, ordenadas por `id` crescente. Os parâmetros `page`, `size` e `sort` podem ser informados na URL; o tamanho máximo é 20. Uma propriedade de ordenação inválida retorna `400 Bad Request`.
+
+| Método | Endereço | Ação |
+| --- | --- | --- |
+| `GET` | `/vagas` | Lista vagas paginadas |
+| `POST` | `/vagas` | Cadastra uma vaga |
+| `PUT` | `/vagas/{id}` | Atualiza uma vaga |
+
+O corpo de `POST` e `PUT` recebe `titulo`, `descricao`, `area`, `senioridade`, `local`, `aceitaIniciante`, `empresaSlug` e `tecnologias`. Empresas e tecnologias são reutilizadas pelo slug/nome ou cadastradas quando ainda não existem.
+
+Exemplo de listagem: `GET /vagas?page=1&size=3&sort=titulo,asc`.
+
 ## Banco de dados
 
 A aplicação usa H2 em modo arquivo, armazenado em `data/barbearia`, na pasta de execução do projeto. Assim, os registros permanecem salvos quando a aplicação é reiniciada. As tabelas são atualizadas automaticamente pelo JPA.

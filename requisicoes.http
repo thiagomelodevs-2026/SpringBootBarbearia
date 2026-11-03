@@ -1,0 +1,11 @@
+### Frente 1 - Primeira página
+GET http://localhost:8080/vagas
+
+### Frente 1 - Página 1 com 3 registros
+GET http://localhost:8080/vagas?page=1&size=3&sort=titulo,asc
+
+### Frente 1 - Ordenação inválida
+GET http://localhost:8080/vagas?sort=salario
+
+### Frente 1 - Tamanho acima do limite
+GET http://localhost:8080/vagas?size=1000
