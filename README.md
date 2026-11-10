@@ -62,7 +62,9 @@ Exemplo de corpo para `POST` e `PUT`:
 
 ## Banco de dados
 
-A aplicação usa H2 em modo arquivo, armazenado em `data/barbearia`, na pasta de execução do projeto. Assim, os registros permanecem salvos quando a aplicação é reiniciada. As tabelas são atualizadas automaticamente pelo JPA.
+A aplicação usa PostgreSQL no Supabase. Copie `.env.exemple` para `.env` na raiz do projeto e preencha `DB_URL`, `DB_USER` e `DB_PASSWORD` com os valores de **Connect → Session pooler** no painel do Supabase. Use a URL JDBC (`jdbc:postgresql://...`) com `sslmode=require`; a aplicação importa esse arquivo ao iniciar. O `.env` é ignorado pelo Git e não deve ser compartilhado.
+
+As tabelas são atualizadas automaticamente pelo JPA. O pool de conexões fica limitado a três conexões para respeitar os limites do plano Supabase.
 
 
 ## Desenvolvedores

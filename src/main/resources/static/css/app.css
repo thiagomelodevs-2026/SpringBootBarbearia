@@ -5,6 +5,16 @@
   --card-bg: rgba(255,255,255,0.06);
 }
 
+body{
+  min-height: 100vh;
+  background: var(--dark-900);
+  color: #e9eef7;
+}
+
+.pagina-agendamento{
+  background: linear-gradient(180deg, #0b1f3a 0%, #070a12 420px, #070a12 100%);
+}
+
 .bg-dark-900{
   background: var(--dark-900);
   color: #e9eef7;
@@ -73,4 +83,8 @@
 }
 .footer{
   background: transparent;
+}
+
+.nav-link-placeholder{
+  cursor: default;
 }

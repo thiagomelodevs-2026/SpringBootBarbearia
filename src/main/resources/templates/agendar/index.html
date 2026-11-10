@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/app.css}" />
 </head>
-<body>
+<body class="pagina-agendamento">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue shadow-sm">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">
@@ -21,10 +21,11 @@
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Início</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/agendar}">Agendamento</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/servicos}">Serviços</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/equipe}">Nossa Equipe</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/trabalhe-conosco}">Trabalhe Conosco</a></li>
+                <li class="nav-item"><a class="nav-link" href="#agendamento">Agendamento</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-placeholder" href="#">Serviços</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-placeholder" href="#">Nossa Equipe</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-placeholder" href="#">Trabalhe Conosco</a></li>
+                <li class="nav-item"><a class="nav-link" href="#cadastro">Cadastrar-se</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/login}">Admin</a></li>
             </ul>
         </div>
@@ -33,82 +34,82 @@
 <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
-        <h1 class="display-6 fw-bold">Agende seu horário com facilidade</h1>
-        <p class="lead mb-0">Selecione barbeiro, serviço e horário disponível. Sem login.</p>
+        <h1 class="display-6 fw-bold">Seu próximo corte começa aqui</h1>
+        <p class="lead mb-0">Entre ou crie seu cadastro para agendar um horário.</p>
     </div>
     <img class="hero-img" th:src="@{/images/barbearia-hero.jpeg}" alt="Interior da barbearia">
 </header>
 
 <main class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-
-            <div class="card card-glass border-0 shadow-lg">
+    <section class="row g-4 justify-content-center" aria-label="Acesso do cliente">
+        <div class="col-lg-5" id="entrar">
+            <div class="card card-glass border-0 shadow-lg h-100">
                 <div class="card-body p-4">
-                    <h2 class="h4 mb-3">Novo Agendamento</h2>
-                    <!-- DCU 001: Cliente informa dados e confirma -->
-                    <!-- A ação do form será implementada no backend: POST /agendamentos -->
-                    <form th:action="@{/agendamentos}" method="post">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Barbeiro</label>
-                                <select class="form-select" name="barbeiroId" required>
-                                    <option value="" selected disabled>Selecione...</option>
-                                    <!-- depois o backend preenche lista -->
-                                    <option th:each="b : ${barbeiros}"
-                                            th:value="${b.id}"
-                                            th:text="${b.nome}">
-                                </option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Serviço</label>
-                                <select class="form-select" name="servicoId" required>
-                                    <option value="" selected disabled>Selecione...</option>
-                                    <option th:each="s : ${servicos}"
-                                            th:value="${s.id}"
-                                            th:text="${s.nome + ' (' + s.duracaoMin + 'min)'}">
-                                </option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">Horário disponível</label>
-                                <!-- opcional: depois via JS muda conforme barbeiro/serviço -->
-                                <input class="form-control" type="datetime-local" name="horario" required />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">Seu nome</label>
-                                <input class="form-control" type="text" name="nome" placeholder="Seu nome" required/>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">Seu telefone</label>
-                                <input class="form-control" type="text" name="telefone" placeholder="Seu telefone" required />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">Seu e-mail</label>
-                                <input class="form-control" type="email" name="email" placeholder="Seu e-mail" required />
-                            </div>
+                    <h2 class="h4 mb-2">Entrar</h2>
+                    <p class="text-light-emphasis mb-4">Acesse sua conta para continuar com o agendamento.</p>
+                    <form data-auth-form>
+                        <div class="mb-3">
+                            <label class="form-label" for="login-email">E-mail</label>
+                            <input class="form-control" id="login-email" name="email" type="email"
+                                   autocomplete="email" required>
                         </div>
-                        <div class="d-grid gap-2 mt-4"><button class="btn btn-accent btn-lg" type="submit">
-                            Confirmar Reserva
-                        </button>
-                            <a class="btn btn-outline-light" th:href="@{/cliente/status/consultar}">
-                                Já recebi um link por e-mail
-                            </a>
+                        <div class="mb-3">
+                            <label class="form-label" for="login-senha">Senha</label>
+                            <input class="form-control" id="login-senha" name="senha" type="password"
+                                   autocomplete="current-password" required>
                         </div>
-
-                        <p class="text-muted small mt-3 mb-0">
-                            Ao confirmar, você aceita que o atendimento será reservado após validação de disponibilidade e gravação atômica.
-                        </p>
+                        <button class="btn btn-accent w-100" type="submit">Entrar</button>
+                        <p class="small mt-3 mb-0" data-form-message role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-lg-5" id="cadastro">
+            <div class="card card-glass border-0 shadow-lg h-100">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-2">Criar cadastro</h2>
+                    <p class="text-light-emphasis mb-4">Cadastre-se para poder agendar seus atendimentos.</p>
+                    <form data-auth-form>
+                        <div class="mb-3">
+                            <label class="form-label" for="cadastro-nome">Nome completo</label>
+                            <input class="form-control" id="cadastro-nome" name="nome" type="text"
+                                   autocomplete="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="cadastro-email">E-mail</label>
+                            <input class="form-control" id="cadastro-email" name="email" type="email"
+                                   autocomplete="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="cadastro-telefone">Telefone</label>
+                            <input class="form-control" id="cadastro-telefone" name="telefone" type="tel"
+                                   autocomplete="tel" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="cadastro-senha">Senha</label>
+                            <input class="form-control" id="cadastro-senha" name="senha" type="password"
+                                   autocomplete="new-password" required>
+                        </div>
+                        <button class="btn btn-accent w-100" type="submit">Criar cadastro</button>
+                        <p class="small mt-3 mb-0" data-form-message role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4" id="agendamento">
+        <div class="col-lg-10">
+            <div class="card card-glass border-0 shadow-lg">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-2">Agendamento</h2>
+                    <p class="mb-0" role="status">
+                        Para agendar um horário, entre na sua conta ou crie seu cadastro. O agendamento ficará disponível após a implementação da autenticação.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 <footer class="footer mt-auto py-4">
     <div class="container text-center text-muted">
@@ -116,5 +117,6 @@
     </div>
 </footer>
 <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>
