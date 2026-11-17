@@ -23,7 +23,7 @@
     <div class="card card-glass border-0 shadow-lg">
         <div class="card-body p-4">
             <h2 class="h4 mb-3">Painel de Agenda</h2>
-            <p>Gerencie os agendamentos da barbearia.</p>
+            <p>Gerencie os agendamentos da barbearia. Barbeiros carregados do Supabase: <strong th:text="${#lists.size(barbeiros)}"></strong>.</p>
             <!-- Aqui você pode adicionar a tabela ou lista de agendamentos -->
             <form class="row g-3 mb-4" th:action="@{/admin/painel}" method="get">
                 <div class="col-md-4">

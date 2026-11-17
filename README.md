@@ -27,7 +27,12 @@ Para executar os testes:
 
 | Endereço | Página |
 | --- | --- |
-| `/` ou `/agendar` | Agendamento |
+| `/` ou `/agendar` | Página inicial |
+| `/cadastro` | Cadastro de cliente |
+| `/agendamento` | Formulário de agendamento |
+| `/servicos` | Serviços da barbearia |
+| `/equipe` | Equipe (barbeiros cadastrados) |
+| `/trabalhe-conosco` | Trabalhe conosco |
 | `/admin/login` | Login da administração |
 | `/admin/painel-agenda` ou `/admin/painel` | Painel da agenda |
 | `/cliente/status` | Consulta de status do agendamento |

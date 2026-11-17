@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Serviços</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="bg-dark-900">
+<nav th:replace="~{layout/fragments/header :: header}"></nav>
+<main class="container py-5">
+    <h1 class="h3 mb-4">Nossos serviços</h1>
+    <div class="row g-4">
+        <div class="col-md-4"><div class="card card-glass h-100"><div class="card-body"><h2 class="h5">Corte masculino</h2><p>Modelo personalizado e acabamento profissional.</p><a class="btn btn-accent" th:href="@{/agendar}">Agendar</a></div></div></div>
+        <div class="col-md-4"><div class="card card-glass h-100"><div class="card-body"><h2 class="h5">Barba</h2><p>Desenho, alinhamento e cuidados completos.</p><a class="btn btn-accent" th:href="@{/agendar}">Agendar</a></div></div></div>
+        <div class="col-md-4"><div class="card card-glass h-100"><div class="card-body"><h2 class="h5">Cabelo e barba</h2><p>Combinação completa para um visual renovado.</p><a class="btn btn-accent" th:href="@{/agendar}">Agendar</a></div></div></div>
+    </div>
+</main>
+<footer th:replace="~{layout/fragments/footer :: footer}"></footer>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -21,11 +21,11 @@
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Início</a></li>
-                <li class="nav-item"><a class="nav-link" href="#agendamento">Agendamento</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-placeholder" href="#">Serviços</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-placeholder" href="#">Nossa Equipe</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-placeholder" href="#">Trabalhe Conosco</a></li>
-                <li class="nav-item"><a class="nav-link" href="#cadastro">Cadastrar-se</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/agendamento}">Agendamento</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/servicos}">Serviços</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/equipe}">Nossa Equipe</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/trabalhe-conosco}">Trabalhe Conosco</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/cadastro}">Cadastrar-se</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/login}">Admin</a></li>
             </ul>
         </div>
@@ -35,77 +35,28 @@
     <div class="hero-overlay"></div>
     <div class="hero-content container">
         <h1 class="display-6 fw-bold">Seu próximo corte começa aqui</h1>
-        <p class="lead mb-0">Entre ou crie seu cadastro para agendar um horário.</p>
+        <p class="lead mb-0">Conheça a barbearia e escolha o próximo passo.</p>
     </div>
     <img class="hero-img" th:src="@{/images/barbearia-hero.jpeg}" alt="Interior da barbearia">
 </header>
 
-<main class="container py-4">
-    <section class="row g-4 justify-content-center" aria-label="Acesso do cliente">
-        <div class="col-lg-5" id="entrar">
+<main class="container py-5">
+    <section class="row g-4 justify-content-center" aria-label="Acesso rápido">
+        <div class="col-md-5">
             <div class="card card-glass border-0 shadow-lg h-100">
                 <div class="card-body p-4">
-                    <h2 class="h4 mb-2">Entrar</h2>
-                    <p class="text-light-emphasis mb-4">Acesse sua conta para continuar com o agendamento.</p>
-                    <form data-auth-form>
-                        <div class="mb-3">
-                            <label class="form-label" for="login-email">E-mail</label>
-                            <input class="form-control" id="login-email" name="email" type="email"
-                                   autocomplete="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="login-senha">Senha</label>
-                            <input class="form-control" id="login-senha" name="senha" type="password"
-                                   autocomplete="current-password" required>
-                        </div>
-                        <button class="btn btn-accent w-100" type="submit">Entrar</button>
-                        <p class="small mt-3 mb-0" data-form-message role="status" aria-live="polite"></p>
-                    </form>
+                    <h2 class="h4 mb-2">Ainda não tem cadastro?</h2>
+                    <p class="text-light-emphasis">Crie seu cadastro para começar.</p>
+                    <a class="btn btn-accent" th:href="@{/cadastro}">Cadastrar-se</a>
                 </div>
             </div>
         </div>
-        <div class="col-lg-5" id="cadastro">
+        <div class="col-md-5">
             <div class="card card-glass border-0 shadow-lg h-100">
                 <div class="card-body p-4">
-                    <h2 class="h4 mb-2">Criar cadastro</h2>
-                    <p class="text-light-emphasis mb-4">Cadastre-se para poder agendar seus atendimentos.</p>
-                    <form data-auth-form>
-                        <div class="mb-3">
-                            <label class="form-label" for="cadastro-nome">Nome completo</label>
-                            <input class="form-control" id="cadastro-nome" name="nome" type="text"
-                                   autocomplete="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="cadastro-email">E-mail</label>
-                            <input class="form-control" id="cadastro-email" name="email" type="email"
-                                   autocomplete="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="cadastro-telefone">Telefone</label>
-                            <input class="form-control" id="cadastro-telefone" name="telefone" type="tel"
-                                   autocomplete="tel" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="cadastro-senha">Senha</label>
-                            <input class="form-control" id="cadastro-senha" name="senha" type="password"
-                                   autocomplete="new-password" required>
-                        </div>
-                        <button class="btn btn-accent w-100" type="submit">Criar cadastro</button>
-                        <p class="small mt-3 mb-0" data-form-message role="status" aria-live="polite"></p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="row justify-content-center mt-4" id="agendamento">
-        <div class="col-lg-10">
-            <div class="card card-glass border-0 shadow-lg">
-                <div class="card-body p-4">
-                    <h2 class="h4 mb-2">Agendamento</h2>
-                    <p class="mb-0" role="status">
-                        Para agendar um horário, entre na sua conta ou crie seu cadastro. O agendamento ficará disponível após a implementação da autenticação.
-                    </p>
+                    <h2 class="h4 mb-2">Já sabe o que quer?</h2>
+                    <p class="text-light-emphasis">Escolha um barbeiro e consulte os horários.</p>
+                    <a class="btn btn-accent" th:href="@{/agendamento}">Agendar horário</a>
                 </div>
             </div>
         </div>

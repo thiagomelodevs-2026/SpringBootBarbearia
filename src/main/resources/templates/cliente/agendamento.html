@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agendar atendimento</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="bg-dark-900">
+<nav th:replace="~{layout/fragments/header :: header}"></nav>
+<main class="container py-5">
+    <div class="card card-glass border-0 shadow-lg mx-auto" style="max-width: 720px">
+        <div class="card-body p-4">
+            <h1 class="h3 mb-2">Agendamento</h1>
+            <p class="text-light-emphasis mb-4">Escolha um barbeiro e informe a data e o horário desejados.</p>
+            <form class="row g-3" data-booking-form>
+                <div class="col-12">
+                    <label class="form-label" for="barbeiro">Barbeiro</label>
+                    <select class="form-select" id="barbeiro" name="barbeiroId" required>
+                        <option value="" selected disabled>Selecione um barbeiro</option>
+                        <option th:each="barbeiro : ${barbeiros}" th:value="${barbeiro.id}" th:text="${barbeiro.nome}"></option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="dataHorario">Data e horário</label>
+                    <input class="form-control" id="dataHorario" name="dataHorario" type="datetime-local" required>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-accent" type="submit">Solicitar agendamento</button>
+                    <p class="small mt-3 mb-0" data-form-message role="status" aria-live="polite"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{layout/fragments/footer :: footer}"></footer>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>
